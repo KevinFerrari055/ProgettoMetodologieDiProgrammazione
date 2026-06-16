@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Pokemon
 {
+
     // Attributi
     private String id;
     private String nickName;
