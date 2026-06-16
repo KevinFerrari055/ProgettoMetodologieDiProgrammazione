@@ -103,4 +103,18 @@ public class Pokemon
     {
         pvAttuali = Math.max(0, pvAttuali - danno);
     }
+
+    /**
+     *
+     * @param mossa la mossa che vuole imparare il pokemon
+     * @return false se già presente, se mossa è null o superato il massimo, true altrimenti
+     */
+    public boolean impara(Mossa mossa)
+    {
+        if(mossa == null) return false;
+        if(this.mosseApprese.size() >= 4) return false;
+        if(mosseApprese.contains(mossa)) return false;
+        this.mosseApprese.add(mossa);
+        return true;
+    }
 }
