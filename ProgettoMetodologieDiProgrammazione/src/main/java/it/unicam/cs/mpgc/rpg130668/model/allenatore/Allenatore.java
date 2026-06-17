@@ -12,6 +12,15 @@ public class Allenatore
     private Posizione posizione;
     private Squadra squadra;
 
+    /**
+     * Costruttore della classe Allenatore
+     * @param id dell'allenatore
+     * @param username dell'allenatore che può cambiare
+     * @param posizioneIniziale dell'allenatore all'interno del gioco
+     * @throws IllegalArgumentException se id è null o Empty
+     * @throws IllegalArgumentException se username è null o lunghezza inferiore a 3
+     * @throws IllegalArgumentException se la posizioneIniziale è null o se le coordinate sono negative
+     */
     //Costruttore
     public Allenatore(String id, String username, Posizione posizioneIniziale)
     {
