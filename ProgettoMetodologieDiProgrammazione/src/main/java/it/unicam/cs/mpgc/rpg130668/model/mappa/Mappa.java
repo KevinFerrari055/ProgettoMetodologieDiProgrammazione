@@ -16,21 +16,26 @@ public class Mappa
     private int larghezza;
     private int altezza;
     private List<Zona> zone;
+    private final TipoCella[][] griglia;
 
     /**
      * Costruttore della Mappa
      * @param larghezza della Mappa
      * @param altezza della Mappa
      * @param zone la lista delle zone presentei nella Mappa
+     * @param griglia la griglia delle celle
      * @throws IllegalArgumentException se altezza e larghezza sono negativi
      * @throws NullPointerException se la lista delle zone è null
+     * @throws NullPointerException se la griglia è null.
      */
-    public Mappa(int larghezza, int altezza, List<Zona> zone)
+    public Mappa(int larghezza, int altezza, List<Zona> zone, TipoCella[][] griglia)
     {
         if(larghezza < 0 || altezza < 0) throw new IllegalArgumentException("dimensioni non valide");
         if(zone == null) throw new NullPointerException("zone è un array nullo");
+        if(griglia == null) throw new NullPointerException("griglia nulla");
         this.larghezza = larghezza;
         this.altezza = altezza;
+        this.griglia = griglia;
         this.zone = new ArrayList<>(zone);
     }
 
@@ -62,6 +67,24 @@ public class Mappa
         if(zone.contains(zona)) return false;
         zone.add(zona);
         return true;
+    }
+
+    /**
+     * @return il tipo della cella nella posizione (x, y)
+     */
+    public TipoCella getCella(int x, int y)
+    {
+        return griglia[x][y];
+    }
+
+    /**
+     * @return true se la posizione e' dentro i bordi della mappa
+     * e la cella non e' un muro
+     */
+    public boolean isPercorribile(int x, int y)
+    {
+        if(x < 0 || x >= larghezza || y < 0 || y >= altezza) return false;
+        return griglia[x][y] != TipoCella.MURO;
     }
 
 }
