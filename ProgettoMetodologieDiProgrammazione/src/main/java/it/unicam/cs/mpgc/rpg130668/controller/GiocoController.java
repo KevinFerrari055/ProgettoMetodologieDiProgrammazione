@@ -68,6 +68,11 @@ public class GiocoController
         allenatoreRepository.salva(nuovo);
     }
 
+    /**
+     * Ritorna la lista degli starte Disponibili, i quali sono charmander, squirtle e bulbasaur.
+     * Se vorrò aggiungerne qualcuno, mi basterà aggiungerlo alla lista dopo averlo creato
+     * @return Lista di PokemonSpecie attualmente presenti
+     */
     public List<PokemonSpecie> getStarterDisponibili()
     {
         PokemonSpecie charmander = new PokemonSpecie("charmander", "Charmander", List.of(TipoElementale.FUOCO), 39, 52, 43, 65, List.of());
@@ -76,10 +81,18 @@ public class GiocoController
         return List.of(charmander, squirtle, bulbasaur);
     }
 
+    /**
+     * Rappresenta la scelta dell'allenatore del pokemon starter, che in base alla scelta ha 2 mosse iniziali.
+     * @param specie del pokemon scelto
+     * @throws NullPointerException se la specie passata è null
+     */
     public void scegliStarter(PokemonSpecie specie)
     {
+        if(specie == null) throw new NullPointerException("La specie passata è null");
+
         Pokemon starter = new Pokemon(UUID.randomUUID().toString(), specie, 5);
 
+        //Controllo scelta dello starter
         if(specie.id().equals("charmander")) {
             starter.impara(new Mossa("Graffio", TipoElementale.NORMALE, 40, 100, CategoriaMossa.FISICA));
             starter.impara(new Mossa("Fiammata", TipoElementale.FUOCO, 90, 100, CategoriaMossa.SPECIALE));
@@ -91,17 +104,36 @@ public class GiocoController
             starter.impara(new Mossa("FogliaLama", TipoElementale.ERBA, 55, 95, CategoriaMossa.SPECIALE));
         }
 
+        //lo aggiungo alla sua squadra iniziale
         allenatoreCorrente.getSquadra().aggiungiPokemon(starter);
+
+        //Lo salvo nel file
         pokemonRepository.salva(starter);
     }
 
+    /**
+     * Una volta terminata la battaglia, l'allenatore può catturare il pokemon e aggiungerlo alla squadra
+     * Anche questo verrà salvato sul file.
+     * @param avversario che rappresenta il pokemon avversario affrontato
+     * @throws NullPointerException se il pokemon avversario è null
+     */
     public void catturaPokemon(Pokemon avversario)
     {
+        if(avversario == null) throw new NullPointerException("Il pokemon avversario è null");
         this.allenatoreCorrente.getSquadra().aggiungiPokemon(avversario);
         pokemonRepository.salva(avversario);
         this.battagliaInCorso = null;
     }
 
+    /**
+     * Rappresenta la dinamica di gioco più importante, il movimento dell'allenatore.
+     * Si sposterà sulla mappa in base a delle coordinate dx e dy.
+     * Prima del movimento controllo se va incontro a un muro e in quel caso non permetto il movimento.
+     * Una volta spostato, capisco in quale zona si trova e se è possibile generare un incontro.
+     * In quel caso, viene avviata la battaglia seguendo sempre le dinamiche dell'efficacia e del calcolatore.
+     * @param dx movimento verso destra o sinistra dell'allenatore sulla mappa
+     * @param dy movimento verso l'alto o il basso dell'allenatore sulla mappa
+     */
     public void muovi(int dx, int dy)
     {
         int nuovaX = allenatoreCorrente.getPosizione().x() + dx;
@@ -131,6 +163,10 @@ public class GiocoController
         }
     }
 
+    /**
+     * Metodo creazione della Mappa molto basilare con tutta erba come default, con il muro intorno e una zona d'acqua al centro.
+     * @return la mappa creata con anche le zone con le specie disponibili
+     */
     private Mappa creaMappa()
     {
         int larghezza = 20;
@@ -172,6 +208,11 @@ public class GiocoController
     }
 
 
+    /**
+     * Ritorna la zona corrente. Ho creato questo metodo per facilitare la dinamica delle battaglie sui movimenti
+     * dell'allenatore
+     * @return la zona in cui si trova l'allenatore grazie all'uso della x e della y
+     */
     private Zona getZonaCorrente()
     {
         TipoCella cella = mappa.getCella(
