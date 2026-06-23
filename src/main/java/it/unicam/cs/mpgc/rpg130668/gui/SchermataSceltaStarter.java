@@ -130,13 +130,7 @@ public class SchermataSceltaStarter extends JFrame
     private JButton getJButton(PokemonSpecie specie) {
         JButton bottone = new JButton("Scegli!");
         bottone.setFont(new Font("Arial", Font.BOLD, 13));
-        bottone.setBackground(new Color(220, 50, 50));
-        bottone.setForeground(Color.WHITE);
-        bottone.setFocusPainted(false);
-        bottone.setOpaque(true);
-        bottone.setBorderPainted(false);
-        bottone.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        bottone.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SchermataBenvenuto.optionsButton(bottone);
         bottone.addActionListener(e -> {
             controller.scegliStarter(specie);
             new SchermataMappa(controller);

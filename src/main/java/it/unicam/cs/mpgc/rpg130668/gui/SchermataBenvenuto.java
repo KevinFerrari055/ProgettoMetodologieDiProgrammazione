@@ -14,6 +14,11 @@ public class SchermataBenvenuto extends JFrame
     //Attributi
     private final GiocoController controller;
 
+    /**
+     * Costruttore della Schermata di Benvenuto
+     * @param controller il controller principale del gioco, usato per creare l'allenatore
+     * @throws NullPointerException se il controller passato è null
+     */
     public SchermataBenvenuto(GiocoController controller)
     {
         if(controller == null) throw new NullPointerException("il controller passato è nulll");
@@ -85,7 +90,7 @@ public class SchermataBenvenuto extends JFrame
         //Bottone (area SUD)
         JButton bottoneInizio = getJButton(campoUsername);
 
-        //Se premo nel campo testo, ottengo lo stesso effetto del click sul bottone
+        //Se premo invio nel campo testo, ottengo lo stesso effetto del click sul bottone
         campoUsername.addActionListener(e -> bottoneInizio.doClick());
 
         JPanel pannelloBottone = new JPanel();
@@ -95,22 +100,12 @@ public class SchermataBenvenuto extends JFrame
 
         //Aggiungo il pannello principale alla finestra
         add(pannelloPrincipale);
-
-
-
-
     }
 
     private JButton getJButton(JTextField campoUsername) {
         JButton bottoneInizio = new JButton("Inizia l'avventura!");
         bottoneInizio.setFont(new Font("Arial", Font.BOLD, 14));
-        bottoneInizio.setBackground(new Color(220, 50, 50));
-        bottoneInizio.setForeground(Color.WHITE);
-        bottoneInizio.setFocusPainted(false);
-        bottoneInizio.setOpaque(true);
-        bottoneInizio.setBorderPainted(false);
-        bottoneInizio.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        bottoneInizio.setAlignmentX(Component.CENTER_ALIGNMENT);
+        optionsButton(bottoneInizio);
 
         //Evento ActionListener: codice che viene eseguito quando si clicca il bottone
         bottoneInizio.addActionListener(e -> {
@@ -134,4 +129,20 @@ public class SchermataBenvenuto extends JFrame
         });
         return bottoneInizio;
     }
+
+    /**
+     * Imposta le opzioni grafiche comuni ai bottoni del gioco:
+     * colore rosso, testo bianco, senza bordo e con cursore a mano.
+     * @param bottone il bottone a cui applicare le opzioni grafiche
+     */
+     static void optionsButton(JButton bottone)
+     {
+        bottone.setBackground(new Color(220, 50, 50));
+        bottone.setForeground(Color.WHITE);
+        bottone.setFocusPainted(false);
+        bottone.setOpaque(true);
+        bottone.setBorderPainted(false);
+        bottone.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        bottone.setAlignmentX(Component.CENTER_ALIGNMENT);
+     }
 }
