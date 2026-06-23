@@ -164,30 +164,7 @@ public class SchermataSceltaStarter extends JFrame
             // immagine non trovata
         }
 
-        // Fallback: cerchio colorato con iniziale del nome
-        return new JPanel() {
-            {
-                setOpaque(false);
-                setPreferredSize(new Dimension(90, 90));
-                setMaximumSize(new Dimension(90, 90));
-            }
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                        RenderingHints.VALUE_ANTIALIAS_ON);
-                g2d.setColor(colorePerTipo(specie.tipi().get(0).getNome()));
-                g2d.fillOval(5, 5, 80, 80);
-                g2d.setColor(Color.WHITE);
-                g2d.setFont(new Font("Arial", Font.BOLD, 30));
-                FontMetrics fm = g2d.getFontMetrics();
-                String lettera = specie.nome().substring(0, 1);
-                int x = (90 - fm.stringWidth(lettera)) / 2;
-                int y = (90 + fm.getAscent()) / 2 - 4;
-                g2d.drawString(lettera, x, y);
-            }
-        };
+        return null;
     }
 
     /**

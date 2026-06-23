@@ -240,5 +240,16 @@
     "squadra": {
       "pokemonPosseduti": []
     }
+  },
+  {
+    "id": "fsfdf",
+    "username": "fsfdf",
+    "posizione": {
+      "x": 5,
+      "y": 5
+    },
+    "squadra": {
+      "pokemonPosseduti": []
+    }
   }
 ]
