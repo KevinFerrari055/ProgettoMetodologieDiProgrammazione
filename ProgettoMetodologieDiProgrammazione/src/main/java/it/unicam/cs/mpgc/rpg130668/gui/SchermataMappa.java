@@ -173,18 +173,7 @@ public class SchermataMappa extends JFrame
             int px = posAllenatore.x() * DIMENSIONE_CELLA;
             int py = posAllenatore.y() * DIMENSIONE_CELLA;
 
-            if (immagineAllenatore != null) {
-                g2d.drawImage(immagineAllenatore, px + 2, py + 2, null);
-            } else {
-                int margine = 4;
-                g2d.setColor(Color.RED);
-                g2d.fillOval(px + margine, py + margine,
-                        DIMENSIONE_CELLA - margine * 2, DIMENSIONE_CELLA - margine * 2);
-                g2d.setColor(Color.WHITE);
-                g2d.setStroke(new BasicStroke(2));
-                g2d.drawOval(px + margine, py + margine,
-                        DIMENSIONE_CELLA - margine * 2, DIMENSIONE_CELLA - margine * 2);
-            }
+            g2d.drawImage(immagineAllenatore, px + 2, py + 2, null);
         }
     }
 
