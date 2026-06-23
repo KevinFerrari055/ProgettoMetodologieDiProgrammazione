@@ -1,7 +1,6 @@
 package it.unicam.cs.mpgc.rpg130668.model.mappa;
 
-import it.unicam.cs.mpgc.rpg130668.model.pokemon.Pokemon;
-import it.unicam.cs.mpgc.rpg130668.model.pokemon.PokemonSpecie;
+import it.unicam.cs.mpgc.rpg130668.model.pokemon.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -58,7 +57,25 @@ public class GeneratoreIncontriCasuale implements GeneratoreIncontri
         // automaticamente garantisce che non si ripeta mai per caso.
         String id = UUID.randomUUID().toString();
 
-        Pokemon pokemonSelvatico = new Pokemon(id, specieScelta, livello);
+        Pokemon pokemonSelvatico = getPokemon(id, specieScelta, livello);
+
         return Optional.of(pokemonSelvatico);
+    }
+
+    private static Pokemon getPokemon(String id, PokemonSpecie specieScelta, int livello) {
+        Pokemon pokemonSelvatico = new Pokemon(id, specieScelta, livello);
+
+        // Assegna una mossa base al Pokemon selvatico in base al suo tipo,
+        // altrimenti non potrebbe mai contrattaccare in battaglia
+        String nomeTipo = specieScelta.tipi().get(0).getNome();
+        Mossa mossaBase = switch (nomeTipo) {
+            case "Fuoco"     -> new Mossa("Braciere", TipoElementale.FUOCO, 30, 100, CategoriaMossa.SPECIALE);
+            case "Acqua"     -> new Mossa("Schizzata", TipoElementale.ACQUA, 30, 100, CategoriaMossa.SPECIALE);
+            case "Erba"      -> new Mossa("Fogliolina", TipoElementale.ERBA, 30, 100, CategoriaMossa.SPECIALE);
+            case "Elettrico" -> new Mossa("Scintilla", TipoElementale.ELETTRICO, 30, 100, CategoriaMossa.SPECIALE);
+            default          -> new Mossa("Tackle", TipoElementale.NORMALE, 25, 100, CategoriaMossa.FISICA);
+        };
+        pokemonSelvatico.impara(mossaBase);
+        return pokemonSelvatico;
     }
 }
