@@ -25,7 +25,8 @@ Il gioco si sviluppa in quattro fasi principali:
 
 ### Prerequisiti
 
-JDK 21 o superiore.
+- Java 25 (LTS)
+- Gradle
 
 ### Istruzioni
 
@@ -71,8 +72,5 @@ I dati vengono salvati nella cartella `data/` nella root del progetto:
 |---|---|
 | ↑ ↓ ← → | Movimento sulla mappa |
 
-## Uso di strumenti di AI
+- Mouse SX per scegliere la mossa del Pokemon da usare nella battaglia
 
-Durante la realizzazione del progetto è stato utilizzato Claude (Anthropic) 
-come strumento di supporto. La dichiarazione dettagliata è disponibile 
-nella Wiki del repository.
