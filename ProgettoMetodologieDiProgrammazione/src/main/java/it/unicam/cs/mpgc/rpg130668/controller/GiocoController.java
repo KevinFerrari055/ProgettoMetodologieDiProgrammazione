@@ -226,6 +226,15 @@ public class GiocoController
                 .orElse(null);
     }
 
+    /**
+     * Fa terminare la battaglia
+     */
+    public void terminaBattaglia()
+    {
+        this.battagliaInCorso = null;
+    }
+
+
     //Metodi getter
     public Mappa getMappa() { return mappa; }
     public Posizione getPosizione() { return allenatoreCorrente.getPosizione(); }
@@ -237,6 +246,8 @@ public class GiocoController
         if (battagliaInCorso == null) return null;
         return battagliaInCorso.getPokemonAvversario();
     }
+
+
 
 
 }

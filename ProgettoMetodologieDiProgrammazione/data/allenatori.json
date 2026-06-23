@@ -130,5 +130,27 @@
     "squadra": {
       "pokemonPosseduti": []
     }
+  },
+  {
+    "id": "dfsdfsdfsf",
+    "username": "dfsdfsdfsf",
+    "posizione": {
+      "x": 5,
+      "y": 5
+    },
+    "squadra": {
+      "pokemonPosseduti": []
+    }
+  },
+  {
+    "id": "pppp",
+    "username": "pppp",
+    "posizione": {
+      "x": 5,
+      "y": 5
+    },
+    "squadra": {
+      "pokemonPosseduti": []
+    }
   }
 ]
