@@ -70,7 +70,7 @@ public class GiocoController
 
     /**
      * Ritorna la lista degli starte Disponibili, i quali sono charmander, squirtle e bulbasaur.
-     * Se vorrò aggiungerne qualcuno, mi basterà aggiungerlo alla lista dopo averlo creato
+     * E' possibile aggiungerne alla lista dopo averlo creato
      * @return Lista di PokemonSpecie attualmente presenti
      */
     public List<PokemonSpecie> getStarterDisponibili()
@@ -212,7 +212,7 @@ public class GiocoController
 
 
     /**
-     * Ritorna la zona corrente. Ho creato questo metodo per facilitare la dinamica delle battaglie sui movimenti
+     * Ritorna la zona corrente. Metodo per facilitare la dinamica delle battaglie sui movimenti
      * dell'allenatore
      * @return la zona in cui si trova l'allenatore grazie all'uso della x e della y
      */
@@ -238,17 +238,51 @@ public class GiocoController
 
 
     //Metodi getter
+
+    /**
+     *
+     * @return la mappa del gioco
+     */
     public Mappa getMappa() { return mappa; }
+
+    /**
+     *
+     * @return la posizione attuale dell'allenatore
+     */
     public Posizione getPosizione() { return allenatoreCorrente.getPosizione(); }
+
+    /**
+     *
+     * @return true se la battaglia è in corso, false altrimenti
+     */
     public boolean isBattagliaInCorso() { return battagliaInCorso != null; }
+
+    /**
+     *
+     * @return la battaglia in corso
+     */
     public Battaglia getBattagliaInCorso() { return battagliaInCorso; }
+
+    /**
+     *
+     * @return l'allenatore corrente
+     */
     public Allenatore getAllenatoreCorrente() { return allenatoreCorrente; }
+
+    /**
+     *
+     * @return il pokemon avversario della battaglia
+     */
     public Pokemon getPokemonAvversario()
     {
         if (battagliaInCorso == null) return null;
         return battagliaInCorso.getPokemonAvversario();
     }
 
+    /**
+     *
+     * @return true se tutti i pokemon nella squadra sono stati sconfitti
+     */
     public boolean isGameOver()
     {
         return allenatoreCorrente.getSquadra().tuttiSconfitti();

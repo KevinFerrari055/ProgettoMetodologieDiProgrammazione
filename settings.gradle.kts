@@ -1,1 +1,1 @@
-rootProject.name = "ProgettoMetodologieDiProgrammazione"
+rootProject.name = "PokemonRPG"
