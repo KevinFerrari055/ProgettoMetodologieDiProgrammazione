@@ -24,7 +24,7 @@ Il gioco si sviluppa in quattro fasi principali:
 
 ### Prerequisiti
 
-- Java 25 (LTS)
+- JDK 21 o superiore
 - Gradle
 
 ### Istruzioni
