@@ -49,7 +49,7 @@ public class GeneratoreIncontriCasuale implements GeneratoreIncontri
         int indiceCasuale = (int) (Math.random() * specieDisponibili.size());
         PokemonSpecie specieScelta = specieDisponibili.get(indiceCasuale);
 
-        // Livello casuale in un piccolo intervallo fisso (per ora mi tengo
+        // Livello casuale in un piccolo intervallo fisso (per ora si mantiene
         // semplice, in futuro si potrebbe far dipendere dal progresso dell'allenatore).
         int livello = LIVELLO_MINIMO + (int) (Math.random() * (LIVELLO_MASSIMO - LIVELLO_MINIMO + 1));
 
