@@ -31,6 +31,7 @@ Il gioco si sviluppa in quattro fasi principali:
 
 ```bash
 git clone https://github.com/KevinFerrari055/pokemonRPG.git
+cd pokemonRPG
 ```
 
 ### Build
